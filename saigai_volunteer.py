@@ -260,13 +260,51 @@ def filled(r):
     return sum(1 for v in r.values() if v)
 
 
+EMPTY = ("", "未記載", "―", None)
+
+
+def quality(r):
+    """情報の充実度。日付など具体的な期間が書かれた記録を優先する。"""
+    score = sum(1 for k in ("opened", "period", "scope", "apply", "note") if r.get(k) not in EMPTY)
+    if r.get("contacts"):
+        score += 1
+    if r.get("period") not in EMPTY and re.search(r"\d", r["period"]):
+        score += 2
+    return score
+
+
 def dedupe(records):
-    best = {}
+    """同じ市区町村の記録が複数ページから取れたときは、充実した記録を軸にして、空欄を他の記録で補う。"""
+    groups = {}
     for r in records:
-        k = rec_key(r)
-        if k not in best or filled(r) > filled(best[k]):
-            best[k] = r
-    return list(best.values())
+        groups.setdefault(rec_key(r), []).append(r)
+    out = []
+    for rs in groups.values():
+        rs = sorted(rs, key=quality, reverse=True)
+        base = dict(rs[0])
+        base["links"] = list(base.get("links", []))
+        base["contacts"] = list(base.get("contacts", []))
+        for other in rs[1:]:
+            for f in ("opened", "period", "scope", "apply", "note"):
+                if base.get(f) in EMPTY and other.get(f) not in EMPTY:
+                    base[f] = other[f]
+            if not base["contacts"] and other.get("contacts"):
+                base["contacts"] = list(other["contacts"])
+            seen = {u for _, u in base["links"]}
+            for l in other.get("links", []):
+                if l[1] not in seen:
+                    base["links"].append(l)
+                    seen.add(l[1])
+        out.append(sanity(base))
+    return out
+
+
+def sanity(r):
+    """具体的な期間が読み取れていない「募集中」は、断定を避けて格下げする。"""
+    if r.get("rec") == "open" and r.get("period") in EMPTY:
+        text = " ".join([r.get("apply") or "", r.get("scope") or "", r.get("note") or ""])
+        r["rec"] = "reg" if "登録" in text else ""
+    return r
 
 
 def merge_manual(auto):
