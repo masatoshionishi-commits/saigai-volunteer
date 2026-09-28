@@ -1,0 +1,29 @@
+# 巡回するページ（1行に1つ）。「#」以降はメモです。
+# 書き方:  URL  [pref=都道府県] [max=辿るリンクの最大数] [follow=リンクの文字やURLに含まれる語1|語2]
+#   pref  … その巡回元の都道府県。本文に県名が書かれていないページを読むときのヒントになります
+#   max   … このページから辿る関連ページの数。0なら辿りません
+#   follow… この語を含むリンクだけを辿ります（省略すると「ボランティア」「災害」などで判断）
+
+# ---------- 千葉県 ----------
+# 県のまとめページ（各市町村の開設状況）。「詳細」「社協」のリンク先も読む
+https://www.saigai-chiba.com/  pref=千葉県  max=45  follow=詳細|社協
+https://www.pref.chiba.lg.jp/bousaik/press/2026/kenborasen.html  pref=千葉県  max=0
+https://www.city.chiba.jp/hokenfukushi/kenkofukushi/chiikifukushi/saigaivolunteer.html  pref=千葉県  max=0
+https://chiba-shakyo.jp/all/r8-saigai-vc/  pref=千葉県  max=0
+
+# ---------- 神奈川県 ----------
+https://www.pref.kanagawa.jp/docs/u3x/saigai/index.html  pref=神奈川県  max=4  follow=siensenta|台風|支援センター
+https://www.knsyk.jp/bousai  pref=神奈川県  max=8  follow=横須賀|三浦|災害ボランティアセンター
+https://www.yokosuka-shakyo.or.jp/shakyo/vc/saigaiji-vc/  pref=神奈川県  max=0
+
+# ---------- 石川県 ----------
+# 8月27日からの大雨
+https://www.ishikawa-npo.jp/volunteer/2713  pref=石川県  max=6  follow=羽咋|中能登|宝達志水|ボランティアセンター|募集
+https://hakuivc-ishikawa.jimdofree.com/  pref=石川県  max=0
+https://hodatsushimizuvc-ishikawa.jimdofree.com/  pref=石川県  max=2  follow=事前登録
+http://nakanoto-syakyou.sblo.jp/article/191787823.html  pref=石川県  max=0
+# 能登半島地震の復興支援
+https://prefvc-ishikawa.jimdofree.com/  pref=石川県  max=4  follow=珠洲|輪島|復興|たすけあい
+
+# ---------- 全国 ----------
+https://www.saigaivc.com/  max=6  follow=神奈川|千葉|石川
