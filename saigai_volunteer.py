@@ -321,10 +321,28 @@ def tag_records(current, prev):
     return gone, False
 
 
+GROUPS = [
+    ("募集中", "募集の範囲や日程が公表され、活動が始まっている（または始まる予定の）センターです。"),
+    ("登録受付中・開設準備中・募集は未定", "事前登録だけ受け付けている、準備中、またはボランティアの募集が決まっていないセンターです。"),
+    ("通常のボランティアセンターで対応・設置予定なし・県の拠点", "災害ボランティアセンターとしての募集は、いまのところありません。"),
+]
+
+
+def group_of(r):
+    if r["st"] in ("support", "normal"):
+        return 2
+    return 0 if r.get("rec") == "open" else 1
+
+
+def sub_rank(r):
+    if group_of(r) != 1:
+        return 0
+    return 0 if r.get("rec") == "reg" else (1 if r["st"] == "open" else 2)
+
+
 def sort_records(records):
     return sorted(records, key=lambda r: (
-        PREF_ORDER.get(r["pref"], 9), REC_ORDER.get({"open": "募集中", "reg": "登録受付中"}.get(r.get("rec"), ""), 2),
-        ST_ORDER.get(r["st"], 9), r["city"]))
+        group_of(r), sub_rank(r), PREF_ORDER.get(r["pref"], 9), ST_ORDER.get(r["st"], 9), r["city"]))
 
 
 # ---------------------------------------------------------------- Webページ
@@ -355,12 +373,11 @@ def build_email(records, gone, failed, first_run):
     records = sort_records(records)
     new_n = sum(1 for r in records if r.get("tag") == "新規")
     chg_n = sum(1 for r in records if r.get("tag") == "変更")
-    rec_n = sum(1 for r in records if r.get("rec") == "open")
+    rec_n = sum(1 for r in records if group_of(r) == 0)
     th = "style='border:1px solid #bbb;padding:6px;background:#f0f0f0;font-size:12px;white-space:nowrap'"
     td = "style='border:1px solid #ccc;padding:6px;font-size:12px;vertical-align:top'"
 
-    rows = []
-    for r in records:
+    def row_html(r):
         ended = r["st"] == "normal"
         bg = "#f7f7f7;color:#777" if ended else "#fff"
         tag = r.get("tag", "")
@@ -375,7 +392,7 @@ def build_email(records, gone, failed, first_run):
             rec_html = "<br><b style='color:#b26a00'>【登録受付中】</b>"
         contacts = "<br>".join(escape(c) for c in r.get("contacts", [])) or "—"
         links = " ".join(f"<a href='{escape(u)}'>{escape(l)}</a>" for l, u in r.get("links", []))
-        rows.append(
+        return (
             f"<tr style='background:{bg}'>"
             f"<td {td}>{tag_html}{cell(r['stLabel'])}</td>"
             f"<td {td}>{cell(r['pref'])}<br><b>{cell(r['city'])}</b>{rec_html}</td>"
@@ -386,10 +403,20 @@ def build_email(records, gone, failed, first_run):
             f"<td {td}>{contacts}</td>"
             f"<td {td}>{links}</td></tr>")
 
-    table = ("<table style='border-collapse:collapse;width:100%'>"
-             f"<tr><th {th}>状況</th><th {th}>市区町村</th><th {th}>センター名</th><th {th}>開設日・活動期間</th>"
-             f"<th {th}>募集範囲・備考</th><th {th}>申込方法</th><th {th}>連絡先</th><th {th}>リンク</th></tr>"
-             + "".join(rows) + "</table>") if rows else "<p>本日は情報を検出できませんでした。</p>"
+    head = (f"<tr><th {th}>状況</th><th {th}>市区町村</th><th {th}>センター名</th><th {th}>開設日・活動期間</th>"
+            f"<th {th}>募集範囲・備考</th><th {th}>申込方法</th><th {th}>連絡先</th><th {th}>リンク</th></tr>")
+    sections = []
+    for gi, (title, note) in enumerate(GROUPS):
+        grows = [r for r in records if group_of(r) == gi]
+        if not grows:
+            continue
+        color = "#c62828" if gi == 0 else ("#b26a00" if gi == 1 else "#555")
+        sections.append(
+            f"<h3 style='font-size:15px;margin:22px 0 2px;color:{color}'>{escape(title)}（{len(grows)}件）</h3>"
+            f"<p style='font-size:11px;color:#666;margin:0 0 6px'>{escape(note)}</p>"
+            "<table style='border-collapse:collapse;width:100%'>" + head
+            + "".join(row_html(r) for r in grows) + "</table>")
+    table = "".join(sections) if sections else "<p>本日は情報を検出できませんでした。</p>"
 
     gone_html = ""
     if gone:
