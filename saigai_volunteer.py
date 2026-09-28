@@ -499,7 +499,7 @@ def cmd_build():
     pages_out, failed, auto = {}, [], []
     visited, page_count = set(), 0
 
-    def process(url, hint):
+    def process(url, hint, direct=False):
         nonlocal page_count
         page_count += 1
         try:
@@ -512,13 +512,17 @@ def cmd_build():
             return None
         h = hashlib.md5((PROMPT_VERSION + page["body"][:MAX_TEXT] + page["block"]).encode()).hexdigest()
         old = prev_pages.get(url)
-        if old and old.get("hash") == h:
+        # 空の結果は「読み取り漏れ」の疑いがあるため、直接指定したページでは使い回さない
+        if old and old.get("hash") == h and (old.get("records") or not direct):
             recs = old.get("records", [])            # 変化なし: AIを呼ばず前回の結果を使う
         elif len(page["body"]) < 100:
             recs = []
         else:
             try:
                 recs = extract(client, url, page, hint)
+                if not recs and (direct or (old and old.get("records"))):
+                    time.sleep(2)
+                    recs = extract(client, url, page, hint)   # 空の結果は読み取り漏れの疑い。1回だけやり直す
                 time.sleep(1)
             except Exception as e:
                 failed.append((url, "抽出エラー: " + str(e)[:80]))
@@ -526,7 +530,11 @@ def cmd_build():
                     pages_out[url] = old
                     auto.extend(old.get("records", []))
                 return page
-        pages_out[url] = {"hash": h, "records": recs}
+        suspicious_empty = not recs and (direct or (old and old.get("records")))
+        if suspicious_empty and old and old.get("records"):
+            recs = old["records"]                    # 読み取り漏れの疑い: 前回の結果を使う
+        # 疑わしい空の結果は記録しない（次回、もう一度読み直す）
+        pages_out[url] = {"hash": "" if suspicious_empty else h, "records": recs}
         auto.extend(recs)
         return page
 
@@ -534,7 +542,7 @@ def cmd_build():
         if src["url"] in visited:
             continue
         visited.add(src["url"])
-        page = process(src["url"], src["pref"])
+        page = process(src["url"], src["pref"], True)
         if not page:
             continue
         for u in related_links(page["links"], visited, src["follow"], src["max"]):
@@ -570,11 +578,11 @@ def cmd_mail():
     msg = MIMEMultipart("alternative")
     msg["Subject"] = subject
     msg["From"] = user
-    msg["To"] = ", ".join(to)
+    msg["To"] = user   # 宛先欄には送信元だけを表示する。受け取る人全員は、宛先を隠した（BCCの）扱いで届く
     msg.attach(MIMEText(html, "html", "utf-8"))
     with smtplib.SMTP_SSL("smtp.gmail.com", 465) as srv:
         srv.login(user, password)
-        srv.sendmail(user, to, msg.as_string())
+        srv.sendmail(user, to, msg.as_string())   # 実際の送り先は、MAIL_TOの全員
     print("メールを送信しました:", subject)
 
 
