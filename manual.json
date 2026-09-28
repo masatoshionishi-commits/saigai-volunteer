@@ -1,0 +1,881 @@
+[
+ {
+  "pref": "神奈川県",
+  "city": "横須賀市",
+  "rec": "reg",
+  "apply": "スマホアプリ「JoyLinks」をダウンロードして登録。ニーズがまとまり次第、アプリで案内されます（通知を許可しておく）。",
+  "name": "横須賀市災害時ボランティアセンター（YSVC）",
+  "st": "open",
+  "stLabel": "開設中（登録受付）",
+  "opened": "9/25",
+  "period": "未定（ニーズ調査中）",
+  "scope": "市内 → 近隣市 → 県内 → 県外の順に、ニーズに応じて拡大予定",
+  "cat": "local",
+  "note": "登録はスマホアプリ「JoyLinks」から。活動にはボランティア活動保険への加入が必要（WEBから加入可）。",
+  "contacts": [
+   "046-821-1303（9:00〜12:00、13:00〜17:00 土日祝休み）",
+   "ysvc@yokosuka-shakyo.or.jp"
+  ],
+  "links": [
+   [
+    "社協ページ",
+    "https://www.yokosuka-shakyo.or.jp/shakyo/vc/saigaiji-vc/"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "神奈川県",
+  "city": "三浦市",
+  "apply": "現在は募集していません。募集が始まったときの案内は、社協の公式Xで確認してください。",
+  "name": "三浦市災害ボランティアセンター",
+  "st": "open",
+  "stLabel": "開設中（募集なし）",
+  "opened": "9/25",
+  "period": "未定",
+  "scope": "現時点ではボランティアを募集していません（ニーズ把握中）",
+  "cat": "unknown",
+  "note": "詳細は三浦市社協の公式Xで案内。下のメール・電話は社協の窓口で、災害VC専用かは未確認です。",
+  "contacts": [
+   "vol2@shakyo-miura.com",
+   "046-888-7347（社協事務局）"
+  ],
+  "links": [
+   [
+    "社協サイト",
+    "https://www.shakyo-miura.com/"
+   ],
+   [
+    "公式X",
+    "https://x.com/shakyo_miura"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "神奈川県",
+  "city": "葉山町",
+  "apply": "ボランティアの募集はありません（災害VC未設置）。",
+  "name": "葉山町社会福祉協議会",
+  "st": "normal",
+  "stLabel": "設置予定なし",
+  "opened": "―",
+  "period": "―",
+  "scope": "大きな被害の報告がないため、災害VCは設置予定なし",
+  "cat": "unknown",
+  "note": "土砂の流入などで片付けの支援が必要な方は、町社協へ。",
+  "contacts": [
+   "046-875-9889"
+  ],
+  "links": [
+   [
+    "社協のお知らせ",
+    "https://www.hayamashakyo.com/news-4380/"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "神奈川県",
+  "city": "県全体",
+  "apply": "県では受け付けていません。被災市町村のVCの案内に従ってください。",
+  "name": "神奈川県災害救援ボランティア支援センター",
+  "st": "support",
+  "stLabel": "県の拠点（9/21設置）",
+  "opened": "9/21",
+  "period": "―",
+  "scope": "被災市町村のVC運営支援と情報発信が役割。ボランティア募集はしていません",
+  "cat": "unknown",
+  "note": "県は、当面のメール・電話での問い合わせを控えるよう案内しています。",
+  "contacts": [
+   "045-312-1121（8:30〜17:15）"
+  ],
+  "links": [
+   [
+    "県ページ",
+    "https://www.pref.kanagawa.jp/docs/u3x/saigai/documents/siensenta-taifuu25gou.html"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "千葉県",
+  "city": "千葉市",
+  "rec": "open",
+  "apply": "WEBで参加登録。登録後、VCが活動内容を調整して連絡します。ボランティア活動保険への加入が必要です。",
+  "name": "千葉市災害ボランティアセンター",
+  "st": "open",
+  "stLabel": "開設中",
+  "opened": "8/17",
+  "period": "8/20〜10/31（再延長）／9:00〜16:00",
+  "scope": "千葉県内（事前登録）",
+  "cat": "pref",
+  "note": "参加はWEB登録制。ボランティア活動保険への加入が必要（自己負担）。被災者の依頼受付は 043-209-8820（10:00〜15:00）。",
+  "contacts": [
+   "043-209-8820（被災者の依頼受付）"
+  ],
+  "links": [
+   [
+    "参加登録（WEB）",
+    "https://chiba-shakyo.jp/all/r8-saigai-vc/#sanka"
+   ],
+   [
+    "社協ページ",
+    "https://chiba-shakyo.jp/all/r8-saigai-vc/"
+   ],
+   [
+    "市ページ",
+    "https://www.city.chiba.jp/hokenfukushi/kenkofukushi/chiikifukushi/saigaivolunteer.html"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "千葉県",
+  "city": "大網白里市",
+  "rec": "open",
+  "st": "open",
+  "stLabel": "開設中",
+  "opened": "8/14",
+  "period": "8/16〜",
+  "scope": "全国",
+  "cat": "all-country",
+  "note": "",
+  "contacts": [],
+  "links": [
+   [
+    "詳細",
+    "https://www.shakyo-sys.jp/oami/info_top.php?no=16360"
+   ],
+   [
+    "社協",
+    "http://www.oamishakyo.com/"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "千葉県",
+  "city": "佐倉市",
+  "rec": "open",
+  "apply": "事前登録制。登録方法は詳細ページで確認してください。",
+  "st": "open",
+  "stLabel": "開設中",
+  "opened": "8/15",
+  "period": "8/17〜",
+  "scope": "県内（事前登録制）",
+  "cat": "pref",
+  "note": "",
+  "contacts": [],
+  "links": [
+   [
+    "詳細",
+    "https://www.sakurashakyo.or.jp/pages/61?detail=1&b_id=371&r_id=123#block371"
+   ],
+   [
+    "社協",
+    "https://www.sakurashakyo.or.jp/"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "千葉県",
+  "city": "八千代市",
+  "rec": "open",
+  "st": "open",
+  "stLabel": "開設中",
+  "opened": "8/17",
+  "period": "8/19〜",
+  "scope": "市内、市内近郊",
+  "cat": "local",
+  "note": "",
+  "contacts": [],
+  "links": [
+   [
+    "詳細",
+    "https://www.yachiyosyakyo.jp/volu.php?id=266"
+   ],
+   [
+    "社協",
+    "https://www.yachiyosyakyo.jp/"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "千葉県",
+  "city": "市原市",
+  "rec": "open",
+  "apply": "事前登録制。登録方法は社協ページで確認してください。",
+  "st": "open",
+  "stLabel": "開設中",
+  "opened": "―",
+  "period": "8/17〜（水曜を除く毎日）",
+  "scope": "全国（事前登録）",
+  "cat": "all-country",
+  "note": "",
+  "contacts": [],
+  "links": [
+   [
+    "社協",
+    "https://www.ichihara-shakyo.or.jp/"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "千葉県",
+  "city": "白井市",
+  "rec": "reg",
+  "apply": "事前登録を受付中。活動は被災者からの依頼に応じて調整されます。登録方法は社協ページで確認してください。",
+  "st": "open",
+  "stLabel": "開設中",
+  "opened": "8/17",
+  "period": "未定",
+  "scope": "市内（台風25号分の事前登録を受付中。範囲は今後の被害状況で検討）",
+  "cat": "local",
+  "note": "",
+  "contacts": [],
+  "links": [
+   [
+    "社協",
+    "https://www.shiroishakyo.or.jp/"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "千葉県",
+  "city": "鎌ケ谷市",
+  "rec": "open",
+  "st": "open",
+  "stLabel": "開設中",
+  "opened": "8/18",
+  "period": "8/21〜（9/1〜9/10は休止）",
+  "scope": "市内、近隣市",
+  "cat": "local",
+  "note": "",
+  "contacts": [],
+  "links": [
+   [
+    "詳細",
+    "https://www.kamagayashakyo.com/news/06/news-20260817-1039"
+   ],
+   [
+    "社協",
+    "https://www.kamagayashakyo.com/"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "千葉県",
+  "city": "松戸市",
+  "rec": "open",
+  "st": "open",
+  "stLabel": "開設中",
+  "opened": "8/19",
+  "period": "8/19〜",
+  "scope": "松戸市内に在住・在勤",
+  "cat": "local",
+  "note": "",
+  "contacts": [],
+  "links": [
+   [
+    "社協",
+    "https://www.matsudo-shakyo.or.jp/"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "千葉県",
+  "city": "茂原市",
+  "rec": "open",
+  "st": "open",
+  "stLabel": "開設中",
+  "opened": "台風25号で開設",
+  "period": "9/23〜",
+  "scope": "千葉県内",
+  "cat": "pref",
+  "note": "",
+  "contacts": [],
+  "links": [
+   [
+    "社協",
+    "https://www.mobara-shakyo.or.jp/"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "千葉県",
+  "city": "船橋市",
+  "rec": "open",
+  "st": "open",
+  "stLabel": "開設中",
+  "opened": "台風25号で開設",
+  "period": "9/23〜",
+  "scope": "市内、近隣市",
+  "cat": "local",
+  "note": "",
+  "contacts": [],
+  "links": [
+   [
+    "社協",
+    "https://funabashi-shakyo.or.jp/"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "千葉県",
+  "city": "八街市",
+  "rec": "open",
+  "st": "open",
+  "stLabel": "開設中",
+  "opened": "台風25号で開設",
+  "period": "9/28〜（予定）",
+  "scope": "近隣市町村",
+  "cat": "local",
+  "note": "",
+  "contacts": [],
+  "links": [
+   [
+    "社協",
+    "https://www.yachimata-shakyo.or.jp/"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "千葉県",
+  "city": "袖ケ浦市",
+  "st": "open",
+  "stLabel": "開設中",
+  "opened": "台風25号で開設",
+  "period": "9/28〜",
+  "scope": "未定",
+  "cat": "unknown",
+  "note": "",
+  "contacts": [],
+  "links": [
+   [
+    "社協",
+    "https://www.sodegaura-shakyo.jp/"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "千葉県",
+  "city": "木更津市",
+  "st": "open",
+  "stLabel": "開設中",
+  "opened": "台風25号で開設",
+  "period": "未記載",
+  "scope": "未記載",
+  "cat": "unknown",
+  "note": "",
+  "contacts": [],
+  "links": [
+   [
+    "社協",
+    "https://www.kisarazushakyo.or.jp/"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "千葉県",
+  "city": "長柄町",
+  "st": "prep",
+  "stLabel": "開設準備中",
+  "opened": "台風25号",
+  "period": "未記載",
+  "scope": "未記載",
+  "cat": "unknown",
+  "note": "",
+  "contacts": [],
+  "links": [
+   [
+    "社協",
+    "https://www.nagara-shakyo.jp/info.php?id=80"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "千葉県",
+  "city": "山武市",
+  "st": "prep",
+  "stLabel": "開設準備中",
+  "opened": "台風25号",
+  "period": "未記載",
+  "scope": "未記載",
+  "cat": "unknown",
+  "note": "",
+  "contacts": [],
+  "links": [
+   [
+    "社協",
+    "https://www.sammushakyo.jp/"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "千葉県",
+  "city": "君津市",
+  "st": "prep",
+  "stLabel": "開設準備中",
+  "opened": "台風25号",
+  "period": "未記載",
+  "scope": "未記載",
+  "cat": "unknown",
+  "note": "",
+  "contacts": [],
+  "links": [
+   [
+    "社協",
+    "https://www.kimitsu-shakyo.or.jp/index.php"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "千葉県",
+  "city": "栄町",
+  "st": "prep",
+  "stLabel": "開設準備中",
+  "opened": "台風25号",
+  "period": "未記載",
+  "scope": "未記載",
+  "cat": "unknown",
+  "note": "",
+  "contacts": [],
+  "links": [
+   [
+    "社協",
+    "http://www.green.dti.ne.jp/sakae-shakyo/"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "千葉県",
+  "city": "酒々井町",
+  "st": "prep",
+  "stLabel": "開設準備中",
+  "opened": "台風25号",
+  "period": "未記載",
+  "scope": "未記載",
+  "cat": "unknown",
+  "note": "",
+  "contacts": [],
+  "links": [
+   [
+    "社協",
+    "https://shisuisyakyo.or.jp/"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "千葉県",
+  "city": "成田市",
+  "st": "prep",
+  "stLabel": "開設準備中",
+  "opened": "台風25号",
+  "period": "未記載",
+  "scope": "未記載",
+  "cat": "unknown",
+  "note": "",
+  "contacts": [],
+  "links": [
+   [
+    "社協",
+    "http://www.naritashakyo.or.jp/"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "千葉県",
+  "city": "四街道市",
+  "apply": "災害VCは通常VCへ移行済み。技術系団体は、災害中間支援組織を通じて受け入れています。",
+  "st": "normal",
+  "stLabel": "通常VCへ移行",
+  "opened": "8/17",
+  "period": "8/20〜9/11（9/11に通常VCへ移行）",
+  "scope": "未記載",
+  "cat": "unknown",
+  "note": "技術系団体は、災害中間支援組織を通じて受け入れ中。",
+  "contacts": [],
+  "links": [
+   [
+    "詳細",
+    "https://www.yotsukaido-shakyo.or.jp/saivol_info.php?id=926"
+   ],
+   [
+    "社協",
+    "https://www.yotsukaido-shakyo.or.jp/"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "千葉県",
+  "city": "東金市",
+  "st": "normal",
+  "stLabel": "通常VCで対応",
+  "opened": "―",
+  "period": "未定",
+  "scope": "未定",
+  "cat": "unknown",
+  "note": "",
+  "contacts": [],
+  "links": [
+   [
+    "社協",
+    "http://www.togane-shakyo.jp/"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "千葉県",
+  "city": "市川市",
+  "st": "normal",
+  "stLabel": "通常VCで対応",
+  "opened": "―",
+  "period": "未定",
+  "scope": "未定",
+  "cat": "unknown",
+  "note": "",
+  "contacts": [],
+  "links": [
+   [
+    "社協",
+    "https://www.fukusi.jp/"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "千葉県",
+  "city": "柏市",
+  "apply": "登録済みの方が対象。登録方法は社協ページで確認してください。",
+  "st": "normal",
+  "stLabel": "通常VCで対応",
+  "opened": "―",
+  "period": "8/14〜",
+  "scope": "市内、登録済みの方",
+  "cat": "local",
+  "note": "",
+  "contacts": [],
+  "links": [
+   [
+    "社協",
+    "https://kashiwa-shakyo.com/"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "千葉県",
+  "city": "我孫子市",
+  "st": "normal",
+  "stLabel": "通常VCで対応",
+  "opened": "―",
+  "period": "未定",
+  "scope": "未定",
+  "cat": "unknown",
+  "note": "",
+  "contacts": [],
+  "links": [
+   [
+    "社協",
+    "https://www.abiko-shakyo.com/"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "千葉県",
+  "city": "富里市",
+  "st": "normal",
+  "stLabel": "通常VCで対応",
+  "opened": "―",
+  "period": "未記載",
+  "scope": "未記載",
+  "cat": "unknown",
+  "note": "",
+  "contacts": [],
+  "links": [
+   [
+    "社協",
+    "https://www.tomisatoshakyo.or.jp/"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "千葉県",
+  "city": "鴨川市",
+  "st": "normal",
+  "stLabel": "通常VCで対応",
+  "opened": "―",
+  "period": "未記載",
+  "scope": "未記載",
+  "cat": "unknown",
+  "note": "",
+  "contacts": [],
+  "links": [
+   [
+    "社協",
+    "https://www.kamoshakyo.or.jp/"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "千葉県",
+  "city": "南房総市",
+  "st": "normal",
+  "stLabel": "通常VCで対応",
+  "opened": "―",
+  "period": "未記載",
+  "scope": "未記載",
+  "cat": "unknown",
+  "note": "",
+  "contacts": [],
+  "links": [
+   [
+    "社協",
+    "https://www.shakyo-minamiboso.or.jp/"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "千葉県",
+  "city": "印西市",
+  "st": "normal",
+  "stLabel": "通常VCで対応",
+  "opened": "―",
+  "period": "未定",
+  "scope": "印西市に在住・在勤・在学の満15歳以上",
+  "cat": "local",
+  "note": "",
+  "contacts": [],
+  "links": [
+   [
+    "社協",
+    "https://www.inzaishakyo.jp/"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "千葉県",
+  "city": "県全体",
+  "apply": "県では登録を受け付けていません。登録は各市町村の災害VCで行います。",
+  "name": "千葉県災害ボランティアセンター",
+  "st": "support",
+  "stLabel": "県の拠点（8/17設置）",
+  "opened": "8/17",
+  "period": "―",
+  "scope": "後方支援と県内全体の調整が役割。ボランティア登録は各市町村のVCで行います",
+  "cat": "unknown",
+  "note": "場所：千葉市中央区千葉港4-5（千葉県社会福祉センター内）。県内の災害ボランティアの問い合わせ窓口です。",
+  "contacts": [
+   "080-2300-1450（9:00〜16:30）"
+  ],
+  "links": [
+   [
+    "千葉災害ボランティア情報",
+    "https://www.saigai-chiba.com/"
+   ],
+   [
+    "県の発表",
+    "https://www.pref.chiba.lg.jp/bousaik/press/2026/kenborasen.html"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "石川県",
+  "city": "羽咋市",
+  "rec": "open",
+  "name": "羽咋市災害ボランティアセンター（8/27からの大雨）",
+  "apply": "活動日ごとの応募フォームに回答すると参加確定。当日は現地集合。団体は仮予約フォームから。18歳未満の参加は、センターの案内の確認が必要です。",
+  "st": "open",
+  "stLabel": "開設中",
+  "opened": "8/27の大雨後（日付は未確認）",
+  "period": "9/25・9/26・9/27分を募集（9:00〜15:00、受付8:30〜9:00）。以降は日程調整中",
+  "scope": "個人（現地集合型）と団体。募集地域の制限は記載なし。金沢発ボランティアバスは現在募集なし",
+  "cat": "unknown",
+  "note": "9/24 11:30時点の残数は 9/25：26名、9/26：20名、9/27：40名。高速道路無償化の対象。石川県災害ボランティアバンクへの登録も案内されています。",
+  "contacts": [
+   "090-2374-2245（ボランティア活動の問い合わせ専用 9:00〜16:00）"
+  ],
+  "links": [
+   [
+    "センターのサイト",
+    "https://hakuivc-ishikawa.jimdofree.com/"
+   ],
+   [
+    "県民VCの募集案内",
+    "https://www.ishikawa-npo.jp/volunteer/2713"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "石川県",
+  "city": "宝達志水町",
+  "rec": "reg",
+  "name": "宝達志水町災害ボランティアセンター（8/27からの大雨）",
+  "apply": "事前登録フォームに登録。ニーズに応じて、活動の募集がメールで届きます（登録しても、直近の活動参加は確約されません）。",
+  "st": "open",
+  "stLabel": "開設中（登録受付）",
+  "opened": "8/28",
+  "period": "随時募集（登録者へ連絡）",
+  "scope": "募集地域の記載なし",
+  "cat": "unknown",
+  "note": "被災者の依頼受付は 090-7492-6093（9:00〜16:00）。日々の活動は町社協のInstagramとFacebookで発信。",
+  "contacts": [
+   "090-7167-5137（町社協・災害ボランティアセンター）"
+  ],
+  "links": [
+   [
+    "センターのサイト",
+    "https://hodatsushimizuvc-ishikawa.jimdofree.com/"
+   ],
+   [
+    "事前登録フォーム",
+    "https://x.gd/qPNOS"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "石川県",
+  "city": "中能登町",
+  "name": "中能登町災害ボランティアセンター（8/27からの大雨）",
+  "apply": "現在は募集していません。公式LINE「中能登町ボランティアバンク」に登録すると、募集の通知が届きます。団体は仮予約フォームから。",
+  "st": "open",
+  "stLabel": "開設中（募集予定なし）",
+  "opened": "8/30",
+  "period": "しばらく募集予定なし（8/31付の案内）",
+  "scope": "個人（中能登町の現地集合）。基本は9:00〜15:00の1日活動",
+  "cat": "unknown",
+  "note": "この案内は8/31付です。募集が再開していないか、社協のページで確認してください。",
+  "contacts": [
+   "0767-74-2252（町社協）",
+   "nakanoto.syakyou@tiara.ocn.ne.jp"
+  ],
+  "links": [
+   [
+    "募集の案内",
+    "http://nakanoto-syakyou.sblo.jp/article/191787823.html"
+   ],
+   [
+    "公式LINE",
+    "https://lin.ee/YND4Lkj"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "石川県",
+  "city": "珠洲市",
+  "rec": "open",
+  "name": "珠洲市復興ボランティアセンター（能登半島地震）",
+  "apply": "県の特設サイトの予約カレンダーから申込。活動日までに、ボランティア活動保険への加入が必要です。",
+  "st": "open",
+  "stLabel": "開設中",
+  "opened": "―",
+  "period": "週ごとに募集（9/30〜10/6分は9/24正午ごろ募集開始の予定と案内あり）",
+  "scope": "全国",
+  "cat": "all-country",
+  "note": "令和6年能登半島地震の復興支援です。8月27日の大雨とは別のセンターです。",
+  "contacts": [],
+  "links": [
+   [
+    "センターのサイト",
+    "https://ishikawa-vc.jimdofree.com/"
+   ],
+   [
+    "予約カレンダー",
+    "https://airrsv.net/city-suzu/calendar"
+   ],
+   [
+    "県の特設サイト",
+    "https://prefvc-ishikawa.jimdofree.com/"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "石川県",
+  "city": "輪島市",
+  "rec": "open",
+  "name": "輪島市災害たすけあいセンター（能登半島地震）",
+  "apply": "県の特設サイトの予約カレンダーから申込。活動日までに、ボランティア活動保険への加入が必要です。",
+  "st": "open",
+  "stLabel": "開設中",
+  "opened": "―",
+  "period": "週ごとに募集（9/30〜10/6分は9/24正午ごろ募集開始の予定と案内あり）",
+  "scope": "全国",
+  "cat": "all-country",
+  "note": "令和6年能登半島地震の復興支援です。8月27日の大雨とは別のセンターです。",
+  "contacts": [],
+  "links": [
+   [
+    "センターのサイト",
+    "https://wajimavc-ishikawa.jimdofree.com/"
+   ],
+   [
+    "予約カレンダー",
+    "https://airrsv.net/city-wajima/calendar"
+   ],
+   [
+    "県の特設サイト",
+    "https://prefvc-ishikawa.jimdofree.com/"
+   ]
+  ],
+  "as_of": "9/28"
+ },
+ {
+  "pref": "石川県",
+  "city": "県全体",
+  "name": "石川県県民ボランティアセンター（石川県災害対策ボランティア本部）",
+  "apply": "金沢発ボランティアバスは現在募集なし。現地集合型は、各市町のセンターで申込。事前登録は「石川県災害ボランティアバンク」（LINE）で受け付けています。",
+  "st": "support",
+  "stLabel": "県の拠点",
+  "opened": "―",
+  "period": "―",
+  "scope": "8/27の大雨と能登半島地震の情報を発信。ボランティアの直接募集は、各市町のセンターが行います",
+  "cat": "unknown",
+  "note": "県は、活動に関する問い合わせを控えるよう案内しています。志賀町の状況は未確認です。",
+  "contacts": [],
+  "links": [
+   [
+    "大雨の募集案内",
+    "https://www.ishikawa-npo.jp/volunteer/2713"
+   ],
+   [
+    "災害ボランティアバンク",
+    "https://www.pref.ishikawa.lg.jp/kenmin/saigai/volunteerbank.html"
+   ],
+   [
+    "能登の特設サイト",
+    "https://prefvc-ishikawa.jimdofree.com/"
+   ]
+  ],
+  "as_of": "9/28"
+ }
+]
