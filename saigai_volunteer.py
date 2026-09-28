@@ -185,6 +185,8 @@ def to_site_record(it, url, page):
     st = it.get("status_class") if it.get("status_class") in ST_VALUES else "normal"
     cat = it.get("scope_cat") if it.get("scope_cat") in CAT_VALUES else "unknown"
     rec = it.get("recruiting") if it.get("recruiting") in REC_VALUES else "不明"
+    if st == "support":
+        rec = "不明"   # 県の支援拠点は、ボランティアを直接募集する窓口ではないため、印を付けない
     name = s(it.get("center_name"))
     ev = s(it.get("event"))
     if name and ev and ev not in name:
@@ -235,8 +237,13 @@ def extract(client, url, page, hint):
 HASH_FIELDS = ["st", "stLabel", "opened", "period", "scope", "apply", "rec", "contacts"]
 
 
+def norm_city(name):
+    """市区町村名の表記ゆれをそろえる（鎌ヶ谷市 と 鎌ケ谷市 など）"""
+    return str(name).replace("ヶ", "ケ").replace("ヵ", "カ").replace("　", "").replace(" ", "").strip()
+
+
 def rec_key(r):
-    return f"{r['pref']}|{r['city']}"
+    return f"{r['pref']}|{norm_city(r['city'])}"
 
 
 def rec_hash(r):
@@ -281,7 +288,8 @@ def load_state():
     try:
         with open(STATE_FILE, encoding="utf-8") as f:
             d = json.load(f)
-        return d.get("records", {}), d.get("pages", {})
+        prev = {rec_key(v): v for v in d.get("records", {}).values()}
+        return prev, d.get("pages", {})
     except Exception:
         return {}, {}
 
