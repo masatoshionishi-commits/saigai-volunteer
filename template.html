@@ -92,6 +92,14 @@ select, input[type="search"] {
 .link-btn { font: inherit; background: none; border: 0; color: var(--accent); text-decoration: underline; cursor: pointer; padding: 4px; }
 
 /* list */
+.sec { margin: 22px 0 2px; padding: 4px 0 4px 12px; border-left: 6px solid var(--normal); }
+.sec:first-child { margin-top: 4px; }
+.sec h2 { margin: 0; font-size: 1.15rem; line-height: 1.4; }
+.sec p { margin: 0; color: var(--muted); font-size: .9rem; }
+.sec .cnt { font-size: .95rem; font-weight: 400; color: var(--muted); }
+.sec.g0 { border-left-color: var(--red); }
+.sec.g0 h2 { color: var(--red); }
+.sec.g1 { border-left-color: var(--prep); }
 .head { display: none; }
 .list { display: grid; gap: 10px; }
 .row {
@@ -285,15 +293,39 @@ function rowHtml(d) {
     '<div class="c contact" data-label="連絡先・リンク">' + contacts + '<div class="links">' + links + "</div></div>" +
   "</article>";
 }
+var GROUPS = [
+  { title: "募集中", cls: "g0", note: "募集の範囲や日程が公表され、活動が始まっている（または始まる予定の）センターです。" },
+  { title: "登録受付中・開設準備中・募集は未定", cls: "g1", note: "事前登録だけ受け付けている、準備中、またはボランティアの募集が決まっていないセンターです。" },
+  { title: "通常のボランティアセンターで対応・設置予定なし・県の拠点", cls: "g2", note: "災害ボランティアセンターとしての募集は、いまのところありません。" }
+];
+function groupOf(d) {
+  if (d.st === "support" || d.st === "normal") return 2;
+  return d.rec === "open" ? 0 : 1;
+}
+function subRank(d) {
+  if (groupOf(d) !== 1) return 0;
+  return d.rec === "reg" ? 0 : (d.st === "open" ? 1 : 2);
+}
+function groupedHtml(rows) {
+  var out = "";
+  GROUPS.forEach(function (g, i) {
+    var part = rows.filter(function (d) { return groupOf(d) === i; });
+    if (!part.length) return;
+    out += '<div class="sec ' + g.cls + '"><h2>' + esc(g.title) + ' <span class="cnt">' + part.length + "件</span></h2><p>" + esc(g.note) + "</p></div>";
+    out += part.map(rowHtml).join("");
+  });
+  return out;
+}
 function render() {
   renderPref();
   renderStrip();
   var rows = filtered(false).sort(function (a, b) {
-    return ST[a.st].order - ST[b.st].order || (PREF_ORDER[a.pref] - PREF_ORDER[b.pref]);
+    return groupOf(a) - groupOf(b) || subRank(a) - subRank(b) ||
+           (PREF_ORDER[a.pref] - PREF_ORDER[b.pref]) || (ST[a.st].order - ST[b.st].order);
   });
   $("count").textContent = rows.length + "件を表示（全" + D.length + "件中）";
   $("list").innerHTML = rows.length
-    ? rows.map(rowHtml).join("")
+    ? groupedHtml(rows)
     : '<div class="empty"><p>条件に合うセンターがありません。</p><button class="link-btn" type="button" id="reset2">絞り込みをリセットする</button></div>';
   var r2 = $("reset2");
   if (r2) r2.addEventListener("click", reset);
