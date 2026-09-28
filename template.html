@@ -1,55 +1,345 @@
-災害ボランティア募集状況
-神奈川県・千葉県・石川県
-2026年9月28日時点の調査結果です。神奈川県・千葉県は台風25号（9月21日〜）と8月千葉豪雨、石川県は8月27日からの大雨と能登半島地震の復興支援が対象です。
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>災害ボランティア募集状況（神奈川県・千葉県・石川県）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  --bg:#F4F6F8; --surface:#FFFFFF; --ink:#17212B; --muted:#586574; --line:#D5DBE2;
+  --accent:#0E5A8A; --accent-ink:#FFFFFF;
+  --open:#17734A; --open-bg:#E3F3EA;
+  --prep:#9A5B00; --prep-bg:#FBEBD0;
+  --normal:#4F5D6E; --normal-bg:#E7EBF0;
+  --support:#0E5A8A; --support-bg:#DDEBF6;
+  --warn-bg:#FFF6DC; --warn-line:#E5C766; --red:#C62828;
+  --font: "BIZ UDPGothic", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:#10161D; --surface:#18212B; --ink:#E8EDF2; --muted:#9AA7B5; --line:#2C3947;
+    --accent:#6DB5E8; --accent-ink:#0B1720;
+    --open:#6FD3A0; --open-bg:#16362A;
+    --prep:#F0B35A; --prep-bg:#3A2B12;
+    --normal:#A9B6C5; --normal-bg:#26303B;
+    --support:#6DB5E8; --support-bg:#17303F;
+    --warn-bg:#33290F; --warn-line:#6B5A20; --red:#FF8A80;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#10161D; --surface:#18212B; --ink:#E8EDF2; --muted:#9AA7B5; --line:#2C3947;
+  --accent:#6DB5E8; --accent-ink:#0B1720;
+  --open:#6FD3A0; --open-bg:#16362A;
+  --prep:#F0B35A; --prep-bg:#3A2B12;
+  --normal:#A9B6C5; --normal-bg:#26303B;
+  --support:#6DB5E8; --support-bg:#17303F;
+  --warn-bg:#33290F; --warn-line:#6B5A20; --red:#FF8A80;
+}
+html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--font); font-size: 16px; line-height: 1.7;
+}
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 28px 16px 48px; }
 
-更新
-__AS_OF__
-表示：12:49
-参加する前に、必ず各センターの公式ページで最新の条件を確認してください。募集の範囲や期間は日々変わります。
+h1 { font-size: clamp(1.5rem, 4.5vw, 2.25rem); line-height: 1.3; margin: 0 0 6px; letter-spacing: .01em; }
+.top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.title { min-width: 0; }
+.upd { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
+#refresh { font: inherit; font-weight: 700; cursor: pointer; padding: 8px 18px; border-radius: 6px; border: 1px solid var(--accent); background: var(--accent); color: var(--accent-ink); min-height: 42px; }
+#refresh[disabled] { opacity: .6; cursor: default; }
+.stamp { font-size: .78rem; color: var(--muted); text-align: right; line-height: 1.4; }
+.asof { margin: 0; color: var(--muted); font-size: .95rem; }
 
-参加には、ボランティア活動保険への加入が必要なセンターが多くあります。全社協のWEB加入ページと、千葉県の保険の案内を確認してください。
+.notice {
+  margin: 20px 0 24px; padding: 14px 16px; background: var(--warn-bg);
+  border: 1px solid var(--warn-line); border-radius: 6px; font-size: .95rem;
+}
+.notice p { margin: 0 0 6px; }
+.notice p:last-child { margin-bottom: 0; }
 
-【募集中】は、募集範囲が公表され、活動が始まっている（または始まる予定の）センターです。【登録受付中】は、事前登録は受け付けていますが、活動の募集はこれからのセンターです。
+/* status strip = filter */
+.strip { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px; padding: 0; list-style: none; }
+.strip button {
+  font: inherit; cursor: pointer; padding: 8px 14px; border-radius: 6px;
+  border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+  display: inline-flex; gap: 8px; align-items: baseline;
+}
+.strip button b { font-size: 1.15rem; font-variant-numeric: tabular-nums; }
+.strip button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
 
-この一覧は、毎朝、公式ページの内容をAIが読み取って自動で更新しています。読み取りの誤りや、日中の変更が反映されていない場合があります。載っている電話番号は各センターが案内している窓口です。まず公式ページを見て、不要な問い合わせは控えましょう。
+.tools { display: grid; gap: 12px; grid-template-columns: 1fr; margin-bottom: 8px; }
+@media (min-width: 760px) { .tools { grid-template-columns: auto auto 1fr; align-items: end; } }
+.field label { display: block; font-size: .85rem; color: var(--muted); margin-bottom: 4px; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: var(--surface); }
+.seg button { font: inherit; padding: 8px 14px; border: 0; background: transparent; color: var(--ink); cursor: pointer; border-right: 1px solid var(--line); }
+.seg button:last-child { border-right: 0; }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+select, input[type="search"] {
+  font: inherit; width: 100%; padding: 8px 10px; border-radius: 6px;
+  border: 1px solid var(--line); background: var(--surface); color: var(--ink); min-height: 42px;
+}
+.meta { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 14px 0 10px; color: var(--muted); font-size: .95rem; }
+.link-btn { font: inherit; background: none; border: 0; color: var(--accent); text-decoration: underline; cursor: pointer; padding: 4px; }
 
-すべて
-0
-開設中
-0
-準備中
-0
-通常VC・設置なし
-0
-県の拠点
-0
-都道府県
-すべて
-神奈川県
-千葉県
-石川県
-募集範囲
+/* list */
+.head { display: none; }
+.list { display: grid; gap: 10px; }
+.row {
+  display: grid; grid-template-columns: 1fr; gap: 10px 20px;
+  background: var(--surface); border: 1px solid var(--line); border-left: 6px solid var(--normal);
+  border-radius: 6px; padding: 14px 16px;
+}
+.row.st-open { border-left-color: var(--open); }
+.row.st-prep { border-left-color: var(--prep); }
+.row.st-support { border-left-color: var(--support); }
+.row.st-normal { border-left-color: var(--normal); }
+.c h3 { margin: 0; font-size: 1.15rem; line-height: 1.4; }
+.tag-rec { color: var(--red); font-weight: 700; margin-left: .4em; white-space: nowrap; }
+.tag-new { color: var(--accent); font-weight: 700; margin-left: .4em; white-space: nowrap; font-size: .85rem; }
+.tag-reg { color: var(--prep); font-weight: 700; margin-left: .4em; white-space: nowrap; font-size: .95rem; }
+.chk { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; color: var(--ink); }
+.chk input { width: 20px; height: 20px; }
+.sub { margin: 0; color: var(--muted); font-size: .9rem; }
+.pref { display: inline-block; margin-top: 4px; font-size: .8rem; color: var(--muted); border: 1px solid var(--line); border-radius: 4px; padding: 0 6px; }
+.pill { display: inline-block; font-size: .9rem; font-weight: 700; padding: 2px 10px; border-radius: 999px; }
+.st-open .pill { background: var(--open-bg); color: var(--open); }
+.st-prep .pill { background: var(--prep-bg); color: var(--prep); }
+.st-support .pill { background: var(--support-bg); color: var(--support); }
+.st-normal .pill { background: var(--normal-bg); color: var(--normal); }
+.c[data-label]::before { content: attr(data-label); display: block; font-size: .78rem; color: var(--muted); }
+.note { margin: 4px 0 0; color: var(--muted); font-size: .9rem; }
+.contact div { overflow-wrap: anywhere; }
+.links { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 4px; }
+.empty { padding: 32px 16px; text-align: center; background: var(--surface); border: 1px dashed var(--line); border-radius: 6px; }
 
-すべて
-市区町村名やキーワードで探す
-例：市原、登録、JoyLinks
-0件を表示（全0件中）
-募集中・登録受付中のみ リセット
-市区町村・センター
-状況
-開設日・活動期間
-募集範囲・備考
-参加の申込方法
-連絡先・リンク
-条件に合うセンターがありません。
+@media (min-width: 860px) {
+  .head, .row { grid-template-columns: 1.2fr .75fr 1fr 1.5fr 1.6fr 1.45fr; }
+  .head { display: grid; gap: 10px 20px; padding: 0 16px 0 22px; color: var(--muted); font-size: .85rem; }
+  .c[data-label]::before { display: none; }
+}
+.foot { margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+.foot h2 { font-size: 1rem; color: var(--ink); margin: 0 0 8px; }
+.foot ul { margin: 0 0 14px; padding-left: 1.2em; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="title">
+    <h1>災害ボランティア募集状況<br>神奈川県・千葉県・石川県</h1>
+    <p class="asof">2026年9月28日時点の調査結果です。神奈川県・千葉県は台風25号（9月21日〜）と8月千葉豪雨、石川県は8月27日からの大雨と能登半島地震の復興支援が対象です。</p>
+    </div>
+    <div class="upd">
+      <button id="refresh" type="button" title="このページの最新の版を読み込み直します">更新</button>
+      <span id="loaded" class="stamp"></span>
+    </div>
+  </header>
 
-絞り込みをリセットする
-情報源
-千葉災害ボランティア情報（千葉県社会福祉協議会）
-神奈川県 災害ボランティア情報
-横須賀市社会福祉協議会 災害時ボランティアセンター
-千葉市 災害ボランティアセンターについて
-石川県県民ボランティアセンター（8月27日からの大雨）
-石川県災害ボランティア情報（能登半島地震）
-羽咋市災害ボランティアセンター、宝達志水町災害ボランティアセンター、中能登町社協
-「手動確認」と書かれた項目は、自動での読み取りができなかったため、担当者が確認した内容です。情報は日々変わるため、更新ボタンで最新の版を読み込み直してください。
+  <div class="notice" role="note">
+    <p><b>参加する前に、必ず各センターの公式ページで最新の条件を確認してください。</b>募集の範囲や期間は日々変わります。</p>
+    <p>参加には、ボランティア活動保険への加入が必要なセンターが多くあります。<a href="https://www.saigaivc.com/insurance/" target="_blank" rel="noopener noreferrer">全社協のWEB加入ページ</a>と、<a href="https://www.saigai-chiba.com/2026/08/20/%E7%81%BD%E5%AE%B3%E6%99%82%E3%81%AE%E3%83%9C%E3%83%A9%E3%83%B3%E3%83%86%E3%82%A3%E3%82%A2%E6%B4%BB%E5%8B%95%E4%BF%9D%E9%99%BA%E3%81%AE%E5%8A%A0%E5%85%A5%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/" target="_blank" rel="noopener noreferrer">千葉県の保険の案内</a>を確認してください。</p>
+    <p><b style="color:var(--red)">【募集中】</b>は、募集範囲が公表され、活動が始まっている（または始まる予定の）センターです。<b style="color:var(--prep)">【登録受付中】</b>は、事前登録は受け付けていますが、活動の募集はこれからのセンターです。</p>
+    <p>この一覧は、毎朝、公式ページの内容をAIが読み取って自動で更新しています。読み取りの誤りや、日中の変更が反映されていない場合があります。載っている電話番号は各センターが案内している窓口です。まず公式ページを見て、不要な問い合わせは控えましょう。</p>
+  </div>
+
+  <ul class="strip" id="strip" aria-label="状況で絞り込む"></ul>
+
+  <div class="tools">
+    <div class="field">
+      <label id="prefLabel">都道府県</label>
+      <div class="seg" role="group" aria-labelledby="prefLabel" id="prefSeg"></div>
+    </div>
+    <div class="field">
+      <label for="cat">募集範囲</label>
+      <select id="cat">
+        <option value="all">すべて</option>
+        <option value="all-country">全国から参加できる</option>
+        <option value="pref">県内から参加できる</option>
+        <option value="local">市内・近隣市が対象</option>
+        <option value="unknown">未定・未記載・募集なし</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="q">市区町村名やキーワードで探す</label>
+      <input type="search" id="q" placeholder="例：市原、登録、JoyLinks">
+    </div>
+  </div>
+
+  <div class="meta">
+    <span id="count" aria-live="polite"></span>
+    <span><label class="chk"><input type="checkbox" id="recOnly"> 募集中・登録受付中のみ</label> <button class="link-btn" id="reset" type="button">リセット</button></span>
+  </div>
+
+  <div class="head" aria-hidden="true">
+    <div>市区町村・センター</div><div>状況</div><div>開設日・活動期間</div><div>募集範囲・備考</div><div>参加の申込方法</div><div>連絡先・リンク</div>
+  </div>
+  <div class="list" id="list"></div>
+
+  <footer class="foot">
+    <h2>情報源</h2>
+    <ul>
+      <li><a href="https://www.saigai-chiba.com/">千葉災害ボランティア情報（千葉県社会福祉協議会）</a></li>
+      <li><a href="https://www.pref.kanagawa.jp/docs/u3x/saigai/index.html">神奈川県 災害ボランティア情報</a></li>
+      <li><a href="https://www.yokosuka-shakyo.or.jp/shakyo/vc/saigaiji-vc/">横須賀市社会福祉協議会 災害時ボランティアセンター</a></li>
+      <li><a href="https://www.city.chiba.jp/hokenfukushi/kenkofukushi/chiikifukushi/saigaivolunteer.html">千葉市 災害ボランティアセンターについて</a></li>
+      <li><a href="https://www.ishikawa-npo.jp/volunteer/2713">石川県県民ボランティアセンター（8月27日からの大雨）</a></li>
+      <li><a href="https://prefvc-ishikawa.jimdofree.com/">石川県災害ボランティア情報（能登半島地震）</a></li>
+      <li><a href="https://hakuivc-ishikawa.jimdofree.com/">羽咋市災害ボランティアセンター</a>、<a href="https://hodatsushimizuvc-ishikawa.jimdofree.com/">宝達志水町災害ボランティアセンター</a>、<a href="http://nakanoto-syakyou.sblo.jp/article/191787823.html">中能登町社協</a></li>
+    </ul>
+    <p>「手動確認」と書かれた項目は、自動での読み取りができなかったため、担当者が確認した内容です。情報は日々変わるため、更新ボタンで最新の版を読み込み直してください。</p>
+  </footer>
+</div>
+
+<script>
+// ---- データ（2026-09-28 時点） ----
+// st: open=開設中 / prep=準備中 / normal=通常VC・設置なし / support=県の拠点
+// cat: all-country=全国 / pref=県内 / local=市内・近隣 / unknown=未定・未記載・募集なし
+var ST = {
+  open:    { label: "開設中", order: 0 },
+  prep:    { label: "準備中", order: 1 },
+  normal:  { label: "通常VC・設置なし", order: 3 },
+  support: { label: "県の拠点", order: 2 }
+};
+var PREF_ORDER = { "神奈川県": 0, "千葉県": 1, "石川県": 2 };
+var D = /*__DATA__*/[];
+
+// ---- 画面 ----
+var state = { pref: "all", st: "all", cat: "all", q: "", rec: false };
+var $ = function (id) { return document.getElementById(id); };
+
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, function (c) {
+    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+  });
+}
+function linkify(text) {
+  var t = esc(text);
+  t = t.replace(/(0\d{1,3}-\d{2,4}-\d{4})/g, function (m) {
+    return '<a href="tel:' + m.replace(/-/g, "") + '">' + m + "</a>";
+  });
+  t = t.replace(/([\w.+-]+@[\w-]+(?:\.[\w-]+)+)/g, '<a href="mailto:$1">$1</a>');
+  return t;
+}
+function matchCat(d, c) {
+  if (c === "all") return true;
+  if (c === "all-country") return d.cat === "all-country";
+  return d.cat === c;
+}
+function matchQ(d, q) {
+  if (!q) return true;
+  var hay = [d.city, d.name || "", d.scope, d.note, d.period, d.stLabel, d.apply || "", d.rec === "open" ? "募集中" : d.rec === "reg" ? "登録受付中" : "", d.contacts.join(" ")].join(" ").toLowerCase();
+  return q.toLowerCase().split(/\s+/).every(function (w) { return hay.indexOf(w) !== -1; });
+}
+function filtered(ignoreSt) {
+  return D.filter(function (d) {
+    return (state.pref === "all" || d.pref === state.pref) &&
+           (ignoreSt || state.st === "all" || d.st === state.st) &&
+           matchCat(d, state.cat) && matchQ(d, state.q) && (!state.rec || d.rec);
+  });
+}
+function renderStrip() {
+  var base = filtered(true);
+  var items = [["all", "すべて", base.length]];
+  ["open", "prep", "normal", "support"].forEach(function (k) {
+    items.push([k, ST[k].label, base.filter(function (d) { return d.st === k; }).length]);
+  });
+  $("strip").innerHTML = items.map(function (it) {
+    return '<li><button type="button" data-st="' + it[0] + '" aria-pressed="' + (state.st === it[0]) + '">' +
+           esc(it[1]) + " <b>" + it[2] + "</b></button></li>";
+  }).join("");
+}
+function renderPref() {
+  var opts = [["all", "すべて"], ["神奈川県", "神奈川県"], ["千葉県", "千葉県"], ["石川県", "石川県"]];
+  $("prefSeg").innerHTML = opts.map(function (o) {
+    return '<button type="button" data-pref="' + o[0] + '" aria-pressed="' + (state.pref === o[0]) + '">' + esc(o[1]) + "</button>";
+  }).join("");
+}
+function rowHtml(d) {
+  var contacts = d.contacts.length
+    ? d.contacts.map(function (c) { return "<div>" + linkify(c) + "</div>"; }).join("")
+    : '<div class="note">公式ページで確認</div>';
+  var links = d.links.map(function (l) {
+    return '<a href="' + esc(l[1]) + '" target="_blank" rel="noopener noreferrer">' + esc(l[0]) + "</a>";
+  }).join("");
+  return '<article class="row st-' + d.st + '">' +
+    '<div class="c c-place"><h3>' + esc(d.city) +
+      (d.rec === "open" ? '<span class="tag-rec">【募集中】</span>' : d.rec === "reg" ? '<span class="tag-reg">【登録受付中】</span>' : "") +
+      (d.tag ? '<span class="tag-new">' + esc(d.tag) + "</span>" : "") + "</h3>" +
+      (d.name ? '<p class="sub">' + esc(d.name) + "</p>" : "") +
+      '<span class="pref">' + esc(d.pref) + "</span></div>" +
+    '<div class="c" data-label="状況"><span class="pill">' + esc(d.stLabel) + "</span></div>" +
+    '<div class="c" data-label="開設日・活動期間"><div>開設：' + esc(d.opened) + "</div><div>活動：" + esc(d.period) + "</div></div>" +
+    '<div class="c" data-label="募集範囲・備考"><div>' + esc(d.scope) + "</div>" +
+      (d.note ? '<p class="note">' + esc(d.note) + "</p>" : "") + "</div>" +
+    '<div class="c" data-label="参加の申込方法">' + (d.apply ? "<div>" + esc(d.apply) + "</div>" : '<div class="note">公式ページで確認してください</div>') + "</div>" +
+    '<div class="c contact" data-label="連絡先・リンク">' + contacts + '<div class="links">' + links + "</div></div>" +
+  "</article>";
+}
+function render() {
+  renderPref();
+  renderStrip();
+  var rows = filtered(false).sort(function (a, b) {
+    return ST[a.st].order - ST[b.st].order || (PREF_ORDER[a.pref] - PREF_ORDER[b.pref]);
+  });
+  $("count").textContent = rows.length + "件を表示（全" + D.length + "件中）";
+  $("list").innerHTML = rows.length
+    ? rows.map(rowHtml).join("")
+    : '<div class="empty"><p>条件に合うセンターがありません。</p><button class="link-btn" type="button" id="reset2">絞り込みをリセットする</button></div>';
+  var r2 = $("reset2");
+  if (r2) r2.addEventListener("click", reset);
+}
+function reset() {
+  state = { pref: "all", st: "all", cat: "all", q: "", rec: false };
+  $("recOnly").checked = false;
+  $("cat").value = "all";
+  $("q").value = "";
+  render();
+}
+document.addEventListener("click", function (e) {
+  var b = e.target.closest("button");
+  if (!b) return;
+  if (b.dataset.st) { state.st = b.dataset.st; render(); }
+  else if (b.dataset.pref) { state.pref = b.dataset.pref; render(); }
+});
+$("cat").addEventListener("change", function (e) { state.cat = e.target.value; render(); });
+$("q").addEventListener("input", function (e) { state.q = e.target.value.trim(); render(); });
+$("recOnly").addEventListener("change", function (e) { state.rec = e.target.checked; render(); });
+$("reset").addEventListener("click", reset);
+
+var DATA_AS_OF = "__AS_OF__";
+(function () {
+  var t = new Date().toLocaleTimeString("ja-JP", { hour: "2-digit", minute: "2-digit" });
+  $("loaded").innerHTML = esc(DATA_AS_OF) + "<br>表示：" + esc(t);
+  try {
+    var sv = sessionStorage.getItem("flt");
+    if (sv) {
+      var o = JSON.parse(sv);
+      sessionStorage.removeItem("flt");
+      state = { pref: o.pref || "all", st: o.st || "all", cat: o.cat || "all", q: o.q || "", rec: !!o.rec };
+      $("cat").value = state.cat;
+      $("q").value = state.q;
+      $("recOnly").checked = state.rec;
+    }
+  } catch (e) {}
+})();
+$("refresh").addEventListener("click", function () {
+  var b = $("refresh");
+  b.disabled = true;
+  b.textContent = "更新中…";
+  try { sessionStorage.setItem("flt", JSON.stringify(state)); } catch (e) {}
+  location.reload();
+});
+render();
+</script>
+</body>
+</html>
