@@ -1,0 +1,67 @@
+name: 災害ボランティア情報（Web更新とメール）
+
+on:
+  schedule:
+    # GitHubの時刻は世界標準時(UTC)です。21:30 UTC = 日本時間 毎朝 6:30
+    - cron: "30 21 * * *"
+  workflow_dispatch:   # 手動実行（テスト用）ボタンを有効にする
+
+permissions:
+  contents: write      # 前日との比較用データ(state.json)を保存する
+  pages: write         # GitHub Pagesへ公開する
+  id-token: write      # GitHub Pagesへ公開する
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    env:
+      PAGE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: 必要なライブラリをインストール
+        run: pip install -r requirements.txt
+
+      - name: 情報を集めてWebページとメール本文を作る
+        id: build
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python saigai_volunteer.py build
+
+      - name: 前日との比較用データを保存
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state.json
+          git diff --staged --quiet || (git commit -m "update state" && git push)
+
+      - name: Webページを公開する準備
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Webページを公開する
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      # Web公開に失敗しても、情報を集められていればメールは送る
+      - name: メールを送る
+        if: ${{ always() && steps.build.outcome == 'success' }}
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+        run: python saigai_volunteer.py mail
