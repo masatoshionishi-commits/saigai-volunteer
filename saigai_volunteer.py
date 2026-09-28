@@ -20,7 +20,7 @@ from datetime import datetime
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from html import escape
-from urllib.parse import urljoin, urldefrag, urlparse
+from urllib.parse import quote, urljoin, urldefrag, urlparse
 from zoneinfo import ZoneInfo
 
 import requests
@@ -39,6 +39,7 @@ MAX_PAGES = 80            # 1回の実行で処理するページ数の上限
 STATE_FILE = "state.json"
 SOURCES_FILE = "sources.txt"
 MANUAL_FILE = "manual.json"
+OVERRIDE_FILE = "overrides.json"   # 手で直した内容。自動の結果より優先される
 TEMPLATE_FILE = "template.html"
 OUT_SITE = "site"
 OUT_MAIL = "out"
@@ -183,6 +184,11 @@ def s(v, default=""):
     return default if v is None or v == "" else str(v).strip()
 
 
+def safe_url(u):
+    """URLの日本語などを%表記に直す（メールやブラウザでリンクが切れないように）。"""
+    return quote(str(u), safe=":/?&=#%+@;,~!*'()[]$-._")
+
+
 def to_site_record(it, url, page):
     pref = it.get("prefecture")
     if pref not in PREF_ORDER:
@@ -200,10 +206,11 @@ def to_site_record(it, url, page):
     contacts = it.get("contacts") or []
     contacts = [str(c) for c in contacts if c] if isinstance(contacts, list) else [str(contacts)]
 
+    url = safe_url(url)
     links = [["情報源ページ", url]]
     au = s(it.get("apply_url"))
     if au.startswith("http") and (au in page["block"] or au in page["body"]) and au != url:
-        links.append(["申込ページ", au])
+        links.append(["申込ページ", safe_url(au)])
 
     return {
         "pref": pref, "city": city, "name": name,
@@ -326,6 +333,29 @@ def merge_manual(auto):
         m["manual"] = True
         merged.append(m)
     return merged
+
+
+def apply_overrides(records):
+    """overrides.json に書いた市区町村は、自動の結果・手動確認データより優先して置き換える。"""
+    try:
+        with open(OVERRIDE_FILE, encoding="utf-8") as f:
+            overrides = json.load(f)
+    except Exception:
+        return records
+    index = {rec_key(r): i for i, r in enumerate(records)}
+    for o in overrides:
+        o = dict(o)
+        asof = o.pop("as_of", "")
+        o["note"] = ((o.get("note") or "") + f" 【手動設定{('（' + asof + '時点）') if asof else ''}】").strip()
+        o["manual"] = True
+        o.setdefault("links", [])
+        o.setdefault("contacts", [])
+        k = rec_key(o)
+        if k in index:
+            records[index[k]] = o
+        else:
+            records.append(o)
+    return records
 
 
 def load_state():
@@ -552,7 +582,7 @@ def cmd_build():
             process(u, src["pref"])
             time.sleep(1)
 
-    current = merge_manual(dedupe(auto))
+    current = apply_overrides(merge_manual(dedupe(auto)))
     gone, first_run = tag_records(current, prev)
     build_site(current)
     html, subject = build_email(current, gone, failed, first_run)
