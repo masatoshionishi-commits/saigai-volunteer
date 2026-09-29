@@ -41,12 +41,18 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python saigai_volunteer.py build
 
+      # 比較用データの保存に失敗しても、Web公開とメール送信は続ける
       - name: 前日との比較用データを保存
+        continue-on-error: true
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add state.json
-          git diff --staged --quiet || (git commit -m "update state" && git push)
+          if ! git diff --staged --quiet; then
+            git commit -m "update state"
+            git pull --rebase origin main
+            git push
+          fi
 
       - name: Webページを公開する準備
         uses: actions/upload-pages-artifact@v3
